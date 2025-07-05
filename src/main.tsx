@@ -11,8 +11,6 @@ import Footer from "./components/Footer";
 import { store } from "./redux/store.ts";
 import { Toaster } from "@/components/ui/sonner"
 
-
-
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>

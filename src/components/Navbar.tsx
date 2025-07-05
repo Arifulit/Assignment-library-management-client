@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import bookLogo from "@/assets/books.jpg"; // ✅ Adjust path as needed
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,8 +18,13 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
-          <div className="flex-shrink-0 text-2xl font-bold flex items-center gap-2">
-            📚 Library
+          <div className="flex-shrink-0 flex items-center gap-2">
+            <img
+              src={bookLogo}
+              alt="Library Logo"
+              className="h-8 w-8 rounded-full object-cover"
+            />
+            <span className="text-xl sm:text-2xl font-bold">Library</span>
           </div>
 
           {/* Desktop Menu */}
@@ -38,7 +44,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Toggle */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}

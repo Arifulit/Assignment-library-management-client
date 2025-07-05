@@ -50,7 +50,7 @@ export default function FeatureSection() {
       <section className="py-16 bg-white text-center">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-indigo-800 mb-4">
-            ℹ️ About This System
+             About This System
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed">
             Our Library Management System is built for speed, accuracy, and ease of use. Whether it's borrowing, returning, or managing books — we help you stay organized and efficient.
@@ -61,7 +61,7 @@ export default function FeatureSection() {
       {/* CTA */}
       <section className="py-12 bg-gradient-to-r from-indigo-600 to-purple-700 text-white text-center">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-4">🚀 Ready to Explore?</h2>
+          <h2 className="text-3xl font-bold mb-4"> Ready to Explore?</h2>
           <p className="text-lg mb-6">
             Browse our collection or add your own books with just a click.
           </p>

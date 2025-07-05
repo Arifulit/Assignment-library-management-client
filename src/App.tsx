@@ -8,6 +8,7 @@ import EditBook from './home/books/EditBook'
 import BorrowPage from './home/borrows/BorrowPage'
 import Home from './home/Home/Home'
 import FeatureSection from './home/Home/FeatureSection'
+import BookDetails from './home/books/BookDetails'
 
 
 function App() {
@@ -21,8 +22,9 @@ function App() {
         <Route path="/borrow" element={<BorrowSummary />} />
         <Route path="/edit-book/:id" element={<EditBook />} />
         <Route path="/borrow/:bookId" element={<BorrowPage />} />
-    
-     </Routes>
+        <Route path="/book-details/:id" element={<BookDetails />} />
+
+      </Routes>
     </>
   )
 }

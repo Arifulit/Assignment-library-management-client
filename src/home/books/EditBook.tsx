@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useGetBookQuery, useUpdateBookMutation, type Book } from "@/redux/api/bookApi";
+import {
+  useGetBookQuery,
+  useUpdateBookMutation,
+  type Book,
+} from "@/redux/api/bookApi";
+import { toast } from "sonner";
 
 export default function EditBook() {
   const { id } = useParams<{ id: string }>();
@@ -20,16 +25,11 @@ export default function EditBook() {
     available: true,
   });
 
-  // When fetched data changes, update formData state
   useEffect(() => {
     if (fetchedData?.data) {
       setFormData(fetchedData.data);
     }
   }, [fetchedData]);
-
-  if (isLoading || !fetchedData) {
-    return <p>Loading...</p>;
-  }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -41,22 +41,46 @@ export default function EditBook() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await updateBook({ id: id!, book: formData }).unwrap();
-      alert("✅ Book updated successfully");
-      navigate("/books");
-    } catch (error) {
-      console.error("❌ Update failed:", error);
-      alert("Something went wrong");
-    }
-  };
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  // Prevent update if data is unchanged
+  const originalData = JSON.stringify(fetchedData?.data);
+  const currentData = JSON.stringify(formData);
+
+  if (originalData === currentData) {
+    toast.warning("⚠️ No changes made to the book.");
+    return;
+  }
+
+  try {
+    await updateBook({ id: id!, book: formData }).unwrap();
+    toast.success("✅ Book updated successfully");
+    navigate("/books");
+  } catch (error) {
+    console.error("❌ Update failed:", error);
+    toast.error("Something went wrong");
+  }
+};
+
+  if (isLoading || !fetchedData) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-lg text-gray-600 font-medium animate-pulse">
+          Loading book data...
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-xl mx-auto mt-8 p-6 bg-white rounded shadow">
-      <h2 className="text-2xl font-bold mb-4 text-center">Edit Book</h2>
+    <section className="max-w-3xl mx-auto my-10 p-6 sm:p-8 bg-white rounded-lg shadow-md border border-gray-100">
+      <h2 className="text-3xl font-bold text-indigo-700 text-center mb-8">
+        ✏️ Edit Book
+      </h2>
+
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Input Fields */}
         {[
           { label: "Title", name: "title", type: "text" },
           { label: "Author", name: "author", type: "text" },
@@ -77,12 +101,13 @@ export default function EditBook() {
               value={(formData as any)[name]}
               onChange={handleChange}
               required
-              className="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
               placeholder={`Enter ${label}`}
             />
           </div>
         ))}
 
+        {/* Description */}
         <div>
           <label
             htmlFor="description"
@@ -96,11 +121,12 @@ export default function EditBook() {
             rows={4}
             value={formData.description}
             onChange={handleChange}
-            className="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
             placeholder="Enter book description"
           />
         </div>
 
+        {/* Copies */}
         <div>
           <label
             htmlFor="copies"
@@ -115,19 +141,20 @@ export default function EditBook() {
             min={0}
             value={formData.copies}
             onChange={handleChange}
-            className="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
           />
         </div>
 
-        <div className="text-center">
+        {/* Submit Button */}
+        <div className="text-center pt-4">
           <button
             type="submit"
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded-md shadow"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3 rounded-md shadow-lg transition duration-300"
           >
             Update Book
           </button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }

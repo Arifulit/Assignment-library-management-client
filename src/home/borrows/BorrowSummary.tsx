@@ -1,34 +1,59 @@
 import { useGetBorrowSummaryQuery } from "@/redux/api/bookApi";
 
-const BorrowSummary = () => {
+export default function BorrowSummary() {
   const { data, isLoading } = useGetBorrowSummaryQuery();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) {
+    return <p className="text-center text-gray-500 mt-10">⏳ Loading borrow summary...</p>;
+  }
 
   const borrowList = data?.data || [];
 
   return (
-    <div className="overflow-x-auto mt-8">
-      <table className="min-w-full bg-white rounded shadow">
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="px-4 py-2">Title</th>
-            <th className="px-4 py-2">ISBN</th>
-            <th className="px-4 py-2">Total Borrowed</th>
-          </tr>
-        </thead>
-        <tbody>
-          {borrowList.map((entry) => (
-            <tr key={entry.isbn} className="text-center border-t">
-              <td className="px-4 py-2">{entry.title}</td>
-              <td className="px-4 py-2">{entry.isbn}</td>
-              <td className="px-4 py-2">{entry.totalBorrowed}</td>
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+      <h2 className="text-2xl sm:text-3xl font-bold text-center text-indigo-700 mb-8">
+        📘 Borrow Summary
+      </h2>
+
+      <div className="overflow-x-auto bg-white shadow rounded-xl ring-1 ring-gray-200">
+        <table className="min-w-full divide-y divide-gray-200 text-sm">
+          <thead className="bg-indigo-600 text-white">
+            <tr>
+              <th className="px-4 sm:px-6 py-3 text-left font-semibold uppercase tracking-wide">
+                Title
+              </th>
+              <th className="px-4 sm:px-6 py-3 text-left font-semibold uppercase tracking-wide">
+                ISBN
+              </th>
+              <th className="px-4 sm:px-6 py-3 text-center font-semibold uppercase tracking-wide">
+                Total Borrowed
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody className="divide-y divide-gray-100 bg-white">
+            {borrowList.length > 0 ? (
+              borrowList.map((entry) => (
+                <tr key={entry.isbn} className="hover:bg-indigo-50 transition duration-200">
+                  <td className="px-4 sm:px-6 py-4 text-gray-800 font-medium">
+                    {entry.title}
+                  </td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-600">{entry.isbn}</td>
+                  <td className="px-4 sm:px-6 py-4 text-center text-indigo-700 font-semibold">
+                    {entry.totalBorrowed}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={3} className="text-center text-gray-500 px-6 py-6">
+                  No borrow summary found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
-};
-
-export default BorrowSummary;
+}

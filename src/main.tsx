@@ -19,7 +19,7 @@ createRoot(document.getElementById("root")!).render(
        <Toaster/>
       <BrowserRouter>
         <Navbar />
-        <main className="min-h-screen px-4 py-6 bg-gray-100">
+        <main className="min-h-screen bg-gray-100">
           <App />
         </main>
         <Footer />

@@ -1,56 +1,39 @@
-# 📚 Library Management System
+# 📚 Library Management System (Client)
 
-A modern, minimal, and user-friendly **Library Management System** built with **React**, **Redux Toolkit Query (RTK Query)**, and **TypeScript**. This system enables users to manage a library’s collection with features such as browsing, adding, and deleting books, plus viewing a borrow summary—all through a sleek and responsive UI.
+A modern, minimal, and user-friendly **Library Management System** built with **React**, **Redux Toolkit Query (RTK Query)**, and **TypeScript**. This frontend app lets users manage a library’s collection — browse, add, delete books, and view a borrow summary — all presented in a sleek, responsive interface.
 
 🔗 **Live Demo:** [library-management-client-ruby.vercel.app](https://library-management-client-ruby.vercel.app)
 
 ---
 
-## 📖 Table of Contents
+## ⚡ Features
 
-- [Features](#-features)
-- [UI Preview](#-ui-preview)
-- [Tech Stack](#-tech-stack)
-- [Installation](#-installation)
-- [Usage](#-usage)
-- [Configuration](#-configuration)
-- [Examples](#-examples)
-- [Troubleshooting](#-troubleshooting)
-- [Contributors](#-contributors)
-- [License](#-license)
+- ✅ Browse the library’s book collection  
+- ➕ Add new books  
+- 🗑️ Delete books  
+- 🔍 Optional filter/search capability  
+- 📊 View borrow summary  
+- ⚡ Responsive and fast UI  
+- 💅 Styled with Tailwind CSS  
 
 ---
 
-## 🚀 Features
+## 🔧 Tech Stack
 
-- ✅ Browse all available books
-- ➕ Add new books to the library
-- 🗑️ Delete books
-- 🔍 Optional filter/search functionality
-- 📊 View borrow summary
-- ⚡ Fast and responsive UI
-- 💅 Styled using Tailwind CSS
-
----
-
-## 🖼️ UI Preview
-
-![Library Management System Screenshot](./preview.png)
-
----
-
-## 🧑‍💻 Tech Stack
-
-| Technology            | Purpose                            |
-|-----------------------|------------------------------------|
-| React                 | Component-based UI library         |
-| TypeScript            | Static type checking               |
-| Redux Toolkit         | Simplified state management        |
-| RTK Query             | Efficient data fetching & caching  |
-| React Router          | Client-side navigation             |
-| Tailwind CSS          | Utility-first CSS framework        |
+| Technology             | Purpose                            |
+|------------------------|------------------------------------|
+| React                  | UI framework                       |
+| TypeScript             | Static typing                      |
+| Redux Toolkit + RTK Query | State management & data fetching |
+| React Router           | Client-side routing                |
+| Tailwind CSS           | Styling framework                  |
 | Node.js & Express *(optional)* | Backend API (if used)   |
 
 ---
 
+## 📦 Installation & Setup
 
+1. **Clone the repo:**
+   ```bash
+   git clone https://github.com/Arifulit/Assignment-library-management-client.git
+   cd Assignment-library-management-client

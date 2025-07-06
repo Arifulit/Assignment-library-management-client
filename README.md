@@ -1,6 +1,23 @@
 # 📚 Library Management System
 
-A modern, minimal, and user-friendly **Library Management System** built with **React**, **Redux Toolkit Query (RTK Query)**, and **TypeScript**. This system allows users to manage a book collection with functionalities like viewing, adding, and deleting books, along with a borrow summary.
+A modern, minimal, and user-friendly **Library Management System** built with **React**, **Redux Toolkit Query (RTK Query)**, and **TypeScript**. This system enables users to manage a library’s collection with features such as browsing, adding, and deleting books, plus viewing a borrow summary—all through a sleek and responsive UI.
+
+🔗 **Live Demo:** [library-management-client-ruby.vercel.app](https://library-management-client-ruby.vercel.app)
+
+---
+
+## 📖 Table of Contents
+
+- [Features](#-features)
+- [UI Preview](#-ui-preview)
+- [Tech Stack](#-tech-stack)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Configuration](#-configuration)
+- [Examples](#-examples)
+- [Troubleshooting](#-troubleshooting)
+- [Contributors](#-contributors)
+- [License](#-license)
 
 ---
 
@@ -9,10 +26,10 @@ A modern, minimal, and user-friendly **Library Management System** built with **
 - ✅ Browse all available books
 - ➕ Add new books to the library
 - 🗑️ Delete books
-- 🔍 Filter/search books (optional)
+- 🔍 Optional filter/search functionality
 - 📊 View borrow summary
 - ⚡ Fast and responsive UI
-- 💅 Clean design with Tailwind CSS
+- 💅 Styled using Tailwind CSS
 
 ---
 
@@ -24,17 +41,16 @@ A modern, minimal, and user-friendly **Library Management System** built with **
 
 ## 🧑‍💻 Tech Stack
 
-| Technology       | Description                          |
-|------------------|--------------------------------------|
-| React            | UI Library                           |
-| TypeScript       | Static Typing                        |
-| Redux Toolkit    | State Management                     |
-| RTK Query        | Data Fetching & Caching              |
-| React Router     | Client-side Routing                  |
-| Tailwind CSS     | Utility-First CSS Framework          |
-| Node.js & Express (Optional) | Backend API Server     |
+| Technology            | Purpose                            |
+|-----------------------|------------------------------------|
+| React                 | Component-based UI library         |
+| TypeScript            | Static type checking               |
+| Redux Toolkit         | Simplified state management        |
+| RTK Query             | Efficient data fetching & caching  |
+| React Router          | Client-side navigation             |
+| Tailwind CSS          | Utility-first CSS framework        |
+| Node.js & Express *(optional)* | Backend API (if used)   |
 
 ---
-
 
 

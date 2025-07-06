@@ -5,7 +5,7 @@ import {
   useGetBookQuery,
   useUpdateBookMutation,
   type Book,
-} from "@/redux/api/bookApi";
+} from "@/redux/features/bookApi";
 import { toast } from "sonner";
 
 export default function EditBook() {

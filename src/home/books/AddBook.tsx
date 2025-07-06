@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCreateBookMutation, type BookFormData } from "@/redux/api/bookApi";
+import { useCreateBookMutation, type BookFormData } from "@/redux/features/bookApi";
 import { toast, Toaster } from "sonner";
 
 export default function AddBook() {

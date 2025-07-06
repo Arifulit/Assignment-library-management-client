@@ -1,5 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { Book } from '../api/bookApi';
+import type { Book } from './bookApi';
+
 
 interface BookState {
   selectedBook: Book | null;

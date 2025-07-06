@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useGetBookQuery } from "@/redux/api/bookApi";
+import { useGetBookQuery } from "@/redux/features/bookApi";
 
 const BookDetails = () => {
   const { id } = useParams();

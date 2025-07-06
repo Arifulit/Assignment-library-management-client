@@ -5,7 +5,7 @@
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { useAppSelector } from "@/redux/hooks";
-import { useDeleteBookMutation, useGetBooksQuery } from "@/redux/api/bookApi";
+import { useDeleteBookMutation, useGetBooksQuery } from "@/redux/features/bookApi";
 import SearchBar from "./SearchBar";
 
 const AllBooks = () => {

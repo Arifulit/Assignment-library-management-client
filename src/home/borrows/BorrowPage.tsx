@@ -1,20 +1,30 @@
 
-import { useBorrowBookMutation, useGetBookQuery } from "@/redux/api/bookApi";
+import { useGetBookQuery } from "@/redux/features/bookApi";
+import { useBorrowBookMutation } from "@/redux/features/borrowApi";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast, Toaster } from "sonner";
 
 export default function BorrowPage() {
-  const { bookId } = useParams();
+  const { bookId } = useParams<{ bookId: string }>();
   const navigate = useNavigate();
-  const { data, isLoading } = useGetBookQuery(bookId!);
-  const [borrowBook] = useBorrowBookMutation();
+
+ 
+  const { data, isLoading, isError } = useGetBookQuery(bookId!);
+
+
+  const [borrowBook, { isLoading: isBorrowing }] = useBorrowBookMutation();
 
   const [quantity, setQuantity] = useState(1);
   const [dueDate, setDueDate] = useState("");
 
-  if (isLoading || !data?.data)
+  if (isLoading) {
     return <p className="text-center text-gray-600 mt-10">Loading book info...</p>;
+  }
+
+  if (isError || !data?.data) {
+    return <p className="text-center text-red-600 mt-10">Failed to load book information.</p>;
+  }
 
   const book = data.data;
   const maxCopies = book.copies;
@@ -64,6 +74,7 @@ export default function BorrowPage() {
               onChange={(e) => setQuantity(Number(e.target.value))}
               className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
               required
+              disabled={isBorrowing}
             />
           </div>
 
@@ -78,15 +89,17 @@ export default function BorrowPage() {
               onChange={(e) => setDueDate(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
               required
+              disabled={isBorrowing}
             />
           </div>
 
           <div className="text-center">
             <button
               type="submit"
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-md shadow-lg transition disabled:opacity-50"
+              disabled={isBorrowing}
             >
-              ✅ Borrow Book
+              {isBorrowing ? "Borrowing..." : "✅ Borrow Book"}
             </button>
           </div>
         </form>
